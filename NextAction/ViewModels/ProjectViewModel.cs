@@ -35,8 +35,18 @@ namespace NextAction.ViewModels
 
         public ActionHeader SelectedAction
         {
-            get { return new ActionHeader(_projectSelection.SelectedAction); }
-            set { _projectSelection.SelectedAction = value.Action; }
+            get
+            {
+                return _projectSelection.SelectedAction == null
+                    ? null
+                    : new ActionHeader(_projectSelection.SelectedAction);
+            }
+            set
+            {
+                _projectSelection.SelectedAction = value == null
+                    ? null
+                    : value.Action;
+            }
         }
 
         public ActionViewModel ActionDetail
