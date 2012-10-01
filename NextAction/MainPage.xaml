@@ -391,4 +391,34 @@
             </Grid>
         </Grid>
     </Grid>
+    <Page.BottomAppBar>
+        <AppBar>
+		    <Grid Height="84">
+        		<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+        			<Button Style="{StaticResource AddProjectAppBarButtonStyle}"/>
+        			<Button Style="{StaticResource DeleteProjectAppBarButtonStyle}"/>
+        			<Button Style="{StaticResource PathBasedAppBarButtonStyle}"
+        				AutomationProperties.Name="Project Down"
+        				AutomationProperties.AutomationId="DownAppBarButton"
+        				Content="F1M-224.887,2277.19L-240.615,2261.47 -240.727,2261.58 -240.727,2270.1 -226.173,2284.66 -221.794,2289.04 -202.976,2270.22 -202.976,2261.47 -218.703,2277.19 -218.703,2235.7 -224.887,2235.7 -224.887,2277.19z"/>
+        			<Button Style="{StaticResource FlippedPathBasedAppBarButtonStyle}"
+        				AutomationProperties.Name="Project Up"
+        				AutomationProperties.AutomationId="UpAppBarButton"
+        				Content="F1M-224.887,2277.19L-240.615,2261.47 -240.727,2261.58 -240.727,2270.1 -226.173,2284.66 -221.794,2289.04 -202.976,2270.22 -202.976,2261.47 -218.703,2277.19 -218.703,2235.7 -224.887,2235.7 -224.887,2277.19z"/>
+        		</StackPanel>
+        		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        			<Button Style="{StaticResource AddTaskAppBarButtonStyle}"/>
+        			<Button Style="{StaticResource DeleteTaskAppBarButtonStyle}"/>
+        			<Button Style="{StaticResource PathBasedAppBarButtonStyle}"
+        				AutomationProperties.Name="Task Down"
+        				AutomationProperties.AutomationId="DownAppBarButton"
+        				Content="F1M-224.887,2277.19L-240.615,2261.47 -240.727,2261.58 -240.727,2270.1 -226.173,2284.66 -221.794,2289.04 -202.976,2270.22 -202.976,2261.47 -218.703,2277.19 -218.703,2235.7 -224.887,2235.7 -224.887,2277.19z"/>
+        			<Button Style="{StaticResource FlippedPathBasedAppBarButtonStyle}"
+        				AutomationProperties.Name="Task Up"
+        				AutomationProperties.AutomationId="UpAppBarButton"
+        				Content="F1M-224.887,2277.19L-240.615,2261.47 -240.727,2261.58 -240.727,2270.1 -226.173,2284.66 -221.794,2289.04 -202.976,2270.22 -202.976,2261.47 -218.703,2277.19 -218.703,2235.7 -224.887,2235.7 -224.887,2277.19z"/>
+        		</StackPanel>
+        	</Grid>
+        </AppBar>
+    </Page.BottomAppBar>
 </Page>

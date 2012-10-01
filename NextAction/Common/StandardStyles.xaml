@@ -142,7 +142,7 @@
     </Style>
 
     <!-- Button styles -->
-    
+
     <!--
         TextButtonStyle is used to style a Button using subheader-styled text with no other adornment.  There
         are two styles that are based on TextButtonStyle (TextPrimaryButtonStyle and TextSecondaryButtonStyle)
@@ -399,6 +399,54 @@
         </Setter>
     </Style>
 
+    <Style x:Key="DeleteProjectAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="DeleteAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Delete Project"/>
+        <Setter Property="Content" Value="&#xE106;"/>
+    </Style>
+    <Style x:Key="AddProjectAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="AddAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Add Project"/>
+        <Setter Property="Content" Value="&#xE109;"/>
+    </Style>
+    <Style x:Key="DeleteTaskAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="DeleteAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Delete Task"/>
+        <Setter Property="Content" Value="&#xE106;"/>
+    </Style>
+    <Style x:Key="AddTaskAppBarButtonStyle" TargetType="ButtonBase" BasedOn="{StaticResource AppBarButtonStyle}">
+        <Setter Property="AutomationProperties.AutomationId" Value="AddAppBarButton"/>
+        <Setter Property="AutomationProperties.Name" Value="Add Task"/>
+        <Setter Property="Content" Value="&#xE109;"/>
+    </Style>
+    <Style x:Key="PathBasedAppBarButtonStyle" BasedOn="{StaticResource AppBarButtonStyle}" TargetType="ButtonBase">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Path Width="20" Height="20" 
+             Stretch="Uniform" 
+             Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+             Data="{Binding Path=Content, RelativeSource={RelativeSource Mode=TemplatedParent}}"/>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="FlippedPathBasedAppBarButtonStyle" BasedOn="{StaticResource AppBarButtonStyle}" TargetType="ButtonBase">
+        <Setter Property="ContentTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Path Width="20" Height="20" 
+             Stretch="Uniform" 
+             Fill="{Binding Path=Foreground, RelativeSource={RelativeSource Mode=TemplatedParent}}" 
+             Data="{Binding Path=Content, RelativeSource={RelativeSource Mode=TemplatedParent}}">
+                        <Path.RenderTransform>
+                            <ScaleTransform CenterX="10" CenterY="10" ScaleX="1" ScaleY="-1"/>
+                        </Path.RenderTransform>                        
+                    </Path>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <!-- 
         Standard AppBarButton Styles for use with Button and ToggleButton
     
