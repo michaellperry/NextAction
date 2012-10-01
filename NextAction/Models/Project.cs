@@ -23,6 +23,19 @@ namespace NextAction.Models
             get { return _actions; }
         }
 
+        public ProjectAction NextAction
+        {
+            get
+            {
+                return
+                    (from action in _actions
+                     where !action.IsComplete
+                     orderby action.Order
+                     select action)
+                    .FirstOrDefault();
+            }
+        }
+
         public ProjectAction NewAction()
         {
             ProjectAction action = new ProjectAction();

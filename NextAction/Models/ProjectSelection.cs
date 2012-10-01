@@ -1,4 +1,5 @@
-﻿using UpdateControls.Fields;
+﻿using System.Linq;
+using UpdateControls.Fields;
 
 namespace NextAction.Models
 {
@@ -10,7 +11,13 @@ namespace NextAction.Models
         public Project SelectedProject
         {
             get { return _selectedProject; }
-            set { _selectedProject.Value = value; }
+            set
+            {
+                _selectedProject.Value = value;
+                _selectedAction.Value = value == null
+                    ? null
+                    : value.NextAction;
+            }
         }
 
         public ProjectAction SelectedAction

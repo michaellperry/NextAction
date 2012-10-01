@@ -38,9 +38,8 @@ namespace NextAction.ViewModels
             }
             set
             {
-            	_projectSelection.SelectedProject = value == null
-                    ? null
-                    : value.Project;
+                if (value != null)
+                    _projectSelection.SelectedProject = value.Project;
             }
         }
 

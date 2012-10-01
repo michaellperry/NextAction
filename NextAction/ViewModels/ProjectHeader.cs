@@ -27,12 +27,10 @@ namespace NextAction.ViewModels
         {
             get
             {
-                return
-                    (from action in _project.Actions
-                     where !action.IsComplete
-                     orderby action.Order
-                     select action.Name)
-                    .FirstOrDefault();
+                ProjectAction action = _project.NextAction;
+                return action == null
+                    ? "<No next action>"
+                    : action.Name;
             }
         }
 
