@@ -20,7 +20,7 @@ namespace NextAction.ViewModels
 
         public string Name
         {
-            get { return _project.Name; }
+            get { return _project.Name ?? "<New project>"; }
         }
 
         public string NextAction

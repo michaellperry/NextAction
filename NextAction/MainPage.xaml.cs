@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using NextAction.ViewModels;
+using UpdateControls.XAML;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -11,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using NextAction.Models;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -24,6 +27,14 @@ namespace NextAction
         public MainPage()
         {
             this.InitializeComponent();
+
+            var viewModel = ForView.Unwrap<MainViewModel>(DataContext);
+            viewModel.ProjectAdded += ProjectAdded;
+        }
+
+        void ProjectAdded(Project project)
+        {
+            ProjectNameTextBox.Focus(Windows.UI.Xaml.FocusState.Keyboard);
         }
 
         /// <summary>

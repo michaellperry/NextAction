@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Input;
 using NextAction.Models;
+using UpdateControls.XAML;
 
 namespace NextAction.ViewModels
 {
@@ -52,5 +54,21 @@ namespace NextAction.ViewModels
                     : new ProjectViewModel(_projectSelection.SelectedProject, _projectSelection);
             }
         }
+
+        public ICommand AddProject
+        {
+            get
+            {
+                return MakeCommand
+                    .Do(delegate
+                    {
+                        _projectSelection.SelectedProject = _document.NewProject();
+                        if (ProjectAdded != null)
+                            ProjectAdded(_projectSelection.SelectedProject);
+                    });
+            }
+        }
+
+        public event Action<Project> ProjectAdded;
     }
 }
