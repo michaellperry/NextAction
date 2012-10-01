@@ -14,6 +14,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using NextAction.Models;
+using Windows.UI.Popups;
+using System.Threading.Tasks;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -29,12 +31,35 @@ namespace NextAction
             this.InitializeComponent();
 
             var viewModel = ForView.Unwrap<MainViewModel>(DataContext);
-            viewModel.ProjectAdded += ProjectAdded;
+            if (viewModel != null)
+            {
+                viewModel.ProjectAdded += ProjectAdded;
+                viewModel.CanDeleteProject += CanDeleteProject;
+            }
         }
 
         void ProjectAdded(Project project)
         {
             ProjectNameTextBox.Focus(Windows.UI.Xaml.FocusState.Keyboard);
+        }
+
+        async Task<bool> CanDeleteProject(Project project)
+        {
+            string prompt = String.Format("Delete project {0}?", project.Name);
+
+            var messageDialog = new MessageDialog(prompt);
+
+            UICommand yesCommand = new UICommand("Yes");
+            messageDialog.Commands.Add(yesCommand);
+            messageDialog.Commands.Add(new UICommand("No"));
+
+            messageDialog.DefaultCommandIndex = 0;
+            messageDialog.CancelCommandIndex = 1;
+
+            // Show the message dialog
+            var result = await messageDialog.ShowAsync();
+
+            return result == yesCommand;
         }
 
         /// <summary>

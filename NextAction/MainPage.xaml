@@ -414,7 +414,7 @@
         <AppBar>
 		    <Grid Height="84">
         		<StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-        			<Button Style="{StaticResource DeleteProjectAppBarButtonStyle}"/>
+        			<Button Style="{StaticResource DeleteProjectAppBarButtonStyle}" Command="{Binding DeleteProject}"/>
         			<Button Style="{StaticResource PathBasedAppBarButtonStyle}"
         				AutomationProperties.Name="Project Down"
         				AutomationProperties.AutomationId="DownAppBarButton"

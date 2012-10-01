@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using NextAction.Models;
 using UpdateControls.XAML;
@@ -69,6 +70,24 @@ namespace NextAction.ViewModels
             }
         }
 
+        public ICommand DeleteProject
+        {
+            get
+            {
+                return MakeCommand
+                    .When(() => _projectSelection.SelectedProject != null)
+                    .Do(async delegate
+                    {
+                        if (CanDeleteProject == null || await CanDeleteProject(_projectSelection.SelectedProject))
+                        {
+                            _document.DeleteProject(_projectSelection.SelectedProject);
+                            _projectSelection.SelectedProject = null;
+                        }
+                    });
+            }
+        }
+
         public event Action<Project> ProjectAdded;
+        public event Func<Project, Task<bool>> CanDeleteProject;
     }
 }
