@@ -386,7 +386,7 @@
             	<RowDefinition Height="Auto"/>
             	<RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <TextBox Text="{Binding Name, Mode=TwoWay}" FontSize="26" Margin="8" Background="{StaticResource ProjectBackgroundBrush}" BorderBrush="{x:Null}"/>
+            <TextBox Text="{Binding Name, Mode=TwoWay}" FontSize="26" Margin="8" Background="{StaticResource ProjectBackgroundBrush}" BorderBrush="{x:Null}" Height="47"/>
             <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                 	<ColumnDefinition Width="363*"/>
