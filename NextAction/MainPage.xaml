@@ -1,0 +1,54 @@
+﻿<Page
+    x:Class="NextAction.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NextAction"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    DataContext="{Binding Main, Source={StaticResource Locator}}"
+    mc:Ignorable="d">
+	<Page.Resources>
+		<DataTemplate x:Key="ProjectHeaderTemplate">
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+				</Grid.RowDefinitions>
+                <TextBlock Grid.Row="0" Text="{Binding Name}" FontSize="26" />
+				<TextBlock Grid.Row="1" Text="{Binding NextAction}" FontSize="16"/>
+			</Grid>
+		</DataTemplate>
+        <DataTemplate x:Key="ActionHeaderTemplate">
+            <TextBlock Grid.Row="0" Text="{Binding Name}" FontSize="20" />
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Background="{StaticResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="168*"/>
+            <ColumnDefinition Width="515*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0" ItemsSource="{Binding Projects}" SelectedItem="{Binding SelectedProject, Mode=TwoWay}" ItemTemplate="{StaticResource ProjectHeaderTemplate}"/>
+        <Grid Grid.Column="1" DataContext="{Binding ProjectDetail}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBox Text="{Binding Name, Mode=TwoWay}" FontSize="26"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="363*"/>
+                    <ColumnDefinition Width="745*"/>
+                </Grid.ColumnDefinitions>
+                <ListBox Grid.Column="0" ItemsSource="{Binding Actions}" SelectedItem="{Binding SelectedAction, Mode=TwoWay}" ItemTemplate="{StaticResource ActionHeaderTemplate}"/>
+                <StackPanel Grid.Column="1" Orientation="Vertical" DataContext="{Binding ActionDetail}">
+                    <TextBlock Text="Task" Margin="8" FontSize="16"/>
+                    <TextBox Text="{Binding Name, Mode=TwoWay}" Margin="8" FontSize="20"/>
+                    <TextBlock Text="Description" Margin="8" FontSize="16"/>
+                    <TextBox Text="{Binding Description, Mode=TwoWay}" Margin="8" TextWrapping="Wrap" Height="170" FontSize="20"/>
+                    <CheckBox Content="Completed" IsChecked="{Binding IsComplete, Mode=TwoWay}" FontSize="16"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>
