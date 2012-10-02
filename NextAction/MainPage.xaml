@@ -169,12 +169,17 @@
         						<VisualStateGroup x:Name="SelectionStates">
         							<VisualStateGroup.Transitions>
         								<VisualTransition GeneratedDuration="0"/>
-        								<VisualTransition GeneratedDuration="0:0:0.3" To="Unselected">
+        								<VisualTransition GeneratedDuration="0:0:0.2" To="Unselected">
         									<VisualTransition.GeneratedEasingFunction>
         										<CubicEase EasingMode="EaseIn"/>
         									</VisualTransition.GeneratedEasingFunction>
         								</VisualTransition>
-        								<VisualTransition From="Unselected" GeneratedDuration="0:0:0.3">
+        								<VisualTransition From="Unselected" GeneratedDuration="0:0:0.2">
+        									<VisualTransition.GeneratedEasingFunction>
+        										<CubicEase EasingMode="EaseIn"/>
+        									</VisualTransition.GeneratedEasingFunction>
+        								</VisualTransition>
+        								<VisualTransition From="SelectedPointerOver" GeneratedDuration="0:0:0.2" To="SelectedUnfocused">
         									<VisualTransition.GeneratedEasingFunction>
         										<CubicEase EasingMode="EaseIn"/>
         									</VisualTransition.GeneratedEasingFunction>
