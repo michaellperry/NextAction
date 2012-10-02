@@ -47,5 +47,29 @@ namespace NextAction.Models
         {
             _actions.Remove(action);
         }
+
+        public bool CanMoveDown(ProjectAction action)
+        {
+            return _actions.IndexOf(action) < _actions.Count - 1;
+        }
+
+        public void MoveDown(ProjectAction action)
+        {
+            int index = _actions.IndexOf(action);
+            _actions.RemoveAt(index);
+            _actions.Insert(index + 1, action);
+        }
+
+        public bool CanMoveUp(ProjectAction action)
+        {
+            return _actions.IndexOf(action) > 0;
+        }
+
+        public void MoveUp(ProjectAction action)
+        {
+            int index = _actions.IndexOf(action);
+            _actions.RemoveAt(index);
+            _actions.Insert(index - 1, action);
+        }
     }
 }

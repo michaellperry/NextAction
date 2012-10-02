@@ -397,12 +397,12 @@
                 		<RowDefinition Height="Auto"/>
                 		<RowDefinition Height="637*"/>
                 	</Grid.RowDefinitions>
-            		<Button Style="{StaticResource AddTaskAppBarButtonStyle}" Foreground="Black" Margin="8"/>
+            		<Button Style="{StaticResource AddTaskAppBarButtonStyle}" Foreground="Black" Margin="8" Command="{Binding Main.AddAction, Mode=OneWay, Source={StaticResource Locator}}"/>
             		<ListBox Grid.Column="0" ItemsSource="{Binding Actions}" SelectedItem="{Binding SelectedAction, Mode=TwoWay}" ItemTemplate="{StaticResource ActionHeaderTemplate}" BorderThickness="0" Background="{StaticResource ProjectBackgroundBrush}" Style="{StaticResource ActionListBoxStyle}" Foreground="{StaticResource ProjectForegroundBrush}" ItemContainerStyle="{StaticResource ActionListBoxItemStyle}" Grid.Row="1"/>
             	</Grid>
                 <StackPanel Grid.Column="1" Orientation="Vertical" DataContext="{Binding ActionDetail}" Background="{StaticResource ActionBackgroundBrush}">
                     <TextBlock Text="Task" Margin="8" FontSize="16"/>
-                    <TextBox Text="{Binding Name, Mode=TwoWay}" Margin="8" FontSize="20"/>
+                    <TextBox x:Name="ActionNameTextBox" Text="{Binding Name, Mode=TwoWay}" Margin="8" FontSize="20"/>
                     <TextBlock Text="Description" Margin="8" FontSize="16"/>
                     <TextBox Text="{Binding Description, Mode=TwoWay}" Margin="8" TextWrapping="Wrap" Height="170" FontSize="20"/>
                     <CheckBox Content="Completed" IsChecked="{Binding IsComplete, Mode=TwoWay}" FontSize="16" Margin="8"/>
@@ -419,9 +419,9 @@
                     <Button Style="{StaticResource ProjectUpAppBarButtonStyle}" Command="{Binding MoveProjectUp}" />
         		</StackPanel>
         		<StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-        			<Button Style="{StaticResource DeleteTaskAppBarButtonStyle}"/>
-                    <Button Style="{StaticResource TaskDownAppBarButtonStyle}" />
-                    <Button Style="{StaticResource TaskUpAppBarButtonStyle}" />
+        			<Button Style="{StaticResource DeleteTaskAppBarButtonStyle}" Command="{Binding DeleteAction}"/>
+                    <Button Style="{StaticResource TaskDownAppBarButtonStyle}" Command="{Binding MoveActionDown}" />
+                    <Button Style="{StaticResource TaskUpAppBarButtonStyle}" Command="{Binding MoveActionUp}" />
                 </StackPanel>
         	</Grid>
         </AppBar>

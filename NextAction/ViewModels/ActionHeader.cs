@@ -17,7 +17,7 @@ namespace NextAction.ViewModels
 
         public string Name
         {
-            get { return _action.Name; }
+            get { return _action.Name ?? "<New task>"; }
             set { _action.Name = value; }
         }
 

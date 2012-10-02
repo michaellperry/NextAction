@@ -35,6 +35,8 @@ namespace NextAction
             {
                 viewModel.ProjectAdded += ProjectAdded;
                 viewModel.CanDeleteProject += CanDeleteProject;
+                viewModel.ActionAdded += ActionAdded;
+                viewModel.CanDeleteAction += viewModel_CanDeleteAction;
             }
         }
 
@@ -46,6 +48,30 @@ namespace NextAction
         async Task<bool> CanDeleteProject(Project project)
         {
             string prompt = String.Format("Delete project {0}?", project.Name);
+
+            var messageDialog = new MessageDialog(prompt);
+
+            UICommand yesCommand = new UICommand("Yes");
+            messageDialog.Commands.Add(yesCommand);
+            messageDialog.Commands.Add(new UICommand("No"));
+
+            messageDialog.DefaultCommandIndex = 0;
+            messageDialog.CancelCommandIndex = 1;
+
+            // Show the message dialog
+            var result = await messageDialog.ShowAsync();
+
+            return result == yesCommand;
+        }
+
+        void ActionAdded(ProjectAction obj)
+        {
+            ActionNameTextBox.Focus(Windows.UI.Xaml.FocusState.Keyboard);
+        }
+
+        async Task<bool> viewModel_CanDeleteAction(ProjectAction action)
+        {
+            string prompt = String.Format("Delete task {0}?", action.Name);
 
             var messageDialog = new MessageDialog(prompt);
 

@@ -116,7 +116,75 @@ namespace NextAction.ViewModels
             }
         }
 
+        public ICommand AddAction
+        {
+            get
+            {
+                return MakeCommand
+                    .When(() => _projectSelection.SelectedProject != null)
+                    .Do(delegate
+                    {
+                        _projectSelection.SelectedAction = _projectSelection.SelectedProject.NewAction();
+                        if (ActionAdded != null)
+                            ActionAdded(_projectSelection.SelectedAction);
+                    });
+            }
+        }
+
+        public ICommand DeleteAction
+        {
+            get
+            {
+                return MakeCommand
+                    .When(() =>
+                        _projectSelection.SelectedProject != null &&
+                        _projectSelection.SelectedAction != null)
+                    .Do(async delegate
+                    {
+                        if (CanDeleteAction == null || await CanDeleteAction(_projectSelection.SelectedAction))
+                        {
+                            _projectSelection.SelectedProject.DeleteAction(_projectSelection.SelectedAction);
+                            _projectSelection.SelectedAction = null;
+                        }
+                    });
+            }
+        }
+
+        public ICommand MoveActionDown
+        {
+            get
+            {
+                return MakeCommand
+                    .When(() =>
+                        _projectSelection.SelectedProject != null &&
+                        _projectSelection.SelectedAction != null &&
+                        _projectSelection.SelectedProject.CanMoveDown(_projectSelection.SelectedAction))
+                    .Do(delegate
+                    {
+                        _projectSelection.SelectedProject.MoveDown(_projectSelection.SelectedAction);
+                    });
+            }
+        }
+
+        public ICommand MoveActionUp
+        {
+            get
+            {
+                return MakeCommand
+                    .When(() =>
+                        _projectSelection.SelectedProject != null &&
+                        _projectSelection.SelectedAction != null &&
+                        _projectSelection.SelectedProject.CanMoveUp(_projectSelection.SelectedAction))
+                    .Do(delegate
+                    {
+                        _projectSelection.SelectedProject.MoveUp(_projectSelection.SelectedAction);
+                    });
+            }
+        }
+
         public event Action<Project> ProjectAdded;
         public event Func<Project, Task<bool>> CanDeleteProject;
+        public event Action<ProjectAction> ActionAdded;
+        public event Func<ProjectAction, Task<bool>> CanDeleteAction;
     }
 }
