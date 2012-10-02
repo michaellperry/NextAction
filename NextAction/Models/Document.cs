@@ -27,5 +27,29 @@ namespace NextAction.Models
         {
             _projects.Remove(project);
         }
+
+        public bool CanMoveDown(Project project)
+        {
+            return _projects.IndexOf(project) < _projects.Count - 1;
+        }
+
+        public bool CanMoveUp(Project project)
+        {
+            return _projects.IndexOf(project) > 0;
+        }
+
+        public void MoveDown(Project project)
+        {
+            int index = _projects.IndexOf(project);
+            _projects.RemoveAt(index);
+            _projects.Insert(index + 1, project);
+        }
+
+        public void MoveUp(Project project)
+        {
+            int index = _projects.IndexOf(project);
+            _projects.RemoveAt(index);
+            _projects.Insert(index - 1, project);
+        }
     }
 }

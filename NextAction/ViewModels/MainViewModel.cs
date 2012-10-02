@@ -26,7 +26,6 @@ namespace NextAction.ViewModels
             {
                 return
                     from project in _document.Projects
-                    orderby project.Name
                     select new ProjectHeader(project);
             }
         }
@@ -83,6 +82,36 @@ namespace NextAction.ViewModels
                             _document.DeleteProject(_projectSelection.SelectedProject);
                             _projectSelection.SelectedProject = null;
                         }
+                    });
+            }
+        }
+
+        public ICommand MoveProjectDown
+        {
+            get
+            {
+                return MakeCommand
+                    .When(() =>
+                        _projectSelection.SelectedProject != null &&
+                        _document.CanMoveDown(_projectSelection.SelectedProject))
+                    .Do(delegate
+                    {
+                        _document.MoveDown(_projectSelection.SelectedProject);
+                    });
+            }
+        }
+
+        public ICommand MoveProjectUp
+        {
+            get
+            {
+                return MakeCommand
+                    .When(() =>
+                        _projectSelection.SelectedProject != null &&
+                        _document.CanMoveUp(_projectSelection.SelectedProject))
+                    .Do(delegate
+                    {
+                        _document.MoveUp(_projectSelection.SelectedProject);
                     });
             }
         }
