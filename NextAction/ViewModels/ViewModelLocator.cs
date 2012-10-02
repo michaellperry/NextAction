@@ -27,18 +27,30 @@ namespace NextAction.ViewModels
 
         private static void CreateSampleData(Document document)
         {
-            CreateSampleProject(document, "Project A");
-            CreateSampleProject(document, "Project B");
-            CreateSampleProject(document, "Project C");
+            CreateSampleProject(document, "Get off of Tatooine",
+                "Find the boy",
+                "Bet on the pod races",
+                "Buy hyperdrive",
+                "Install hyperdrive");
+            CreateSampleProject(document, "Fix the sink",
+                "Buy parts at hardware store",
+                "Install parts",
+                "Go back to hardware store",
+                "Smash finger with wrench",
+                "Call plumber");
+            CreateSampleProject(document, "Build Windows 8 app",
+                "Download SDK",
+                "Build app",
+                "...",
+                "Profit!");
         }
 
-        private static void CreateSampleProject(Document document, string name)
+        private static void CreateSampleProject(Document document, string name, params string[] actions)
         {
             Project project = document.NewProject();
             project.Name = name;
-            CreateSampleAction(project, "Action 1");
-            CreateSampleAction(project, "Action 2");
-            CreateSampleAction(project, "Action 3");
+            foreach (string action in actions)
+                CreateSampleAction(project, action);
         }
 
         private static void CreateSampleAction(Project project, string name)
